@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просто хочу сказать...</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: background 1s;
+            overflow: hidden;
+        }
+        .btn {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #e91e63;
+        }
+        #message {
+            font-size: 1.5em;
+            width: 80%;
+            max-width: 600px;
+            display: none;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            color: red;
+            animation: floatUp 5s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { 
+                transform: translateY(100vh); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(-100vh); 
+                opacity: 0; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="btn" onclick="showMessage()">Нажми сюда</button>
+    
+    <p id="message">Слушай, я думаю, ты и так давно всё поняла, но мне просто хочется сказать.  
+    Ты мне нравишься, и я ценю нашу дружбу.  
+    Я ничего не жду, просто держать это в себе стало сложно.</p>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+            startHearts();
+        }
+
+        function createHeart() {
+            let heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        function startHearts() {
+            setInterval(createHeart, 300);
+        }
+    </script>
+
+</body>
+</html>
